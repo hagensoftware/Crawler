@@ -5,32 +5,16 @@ export class Crawler extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { crawlResults: [], loading: true };
+        this.state = { crawlResults: []};
 
-        //this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-
-        //let data = {
-        //    name: 'www.google.com'
-        //}
-        //// The parameters we are gonna pass to the fetch function
-        //let fetchData = {
-        //    method: 'POST',
-        //    body: data,
-        //    headers: new Headers()
-        //}
-
-        //fetch('api/Crawler/LoadUrl')
-        //    .then(response => response.json())
-        //    .then(data => {
-        //        this.setState({ crawlResults: data, loading: false });
-        //    });
     }
 
     handleSubmit(event) {
         event.preventDefault();
         const data = new FormData(event.target);
-        //this.state = { crawlResults: [] };
+
+        this.setState({ crawlResults: data, loading: true });
 
         fetch('api/Crawler/LoadUrl', {
             method: 'POST',
@@ -40,21 +24,18 @@ export class Crawler extends Component {
         .then(data => {
             this.setState({ crawlResults: data, loading: false });
         });
-
-        //let contents = this.state.loading
-        //    ? <p><em>Loading...</em></p>
-        //    : Crawler.renderCrawlResultsTable(this.state.crawlResults);
     }
 
     static renderCrawlWordCount(crawlResults) {
+        if (crawlResults.length == 0) return;
         return (
             <div>Word Count: {crawlResults.wordCount}</div>
             )
     }
 
     static renderCrawlImages(crawlResults) {
+        if (crawlResults.length == 0) return;
         return (
-            //<div>Word Count: {crawlResults.wordCount}</div>
             <table className='table table-striped'>
                 <thead>
                     <tr>
@@ -73,8 +54,8 @@ export class Crawler extends Component {
     }
 
     static renderCrawlResultsTable(crawlResults) {
+        if (crawlResults.length == 0) return;
         return (
-            //<div>Word Count: {crawlResults.wordCount}</div>
             <table className='table table-striped'>
                 <thead>
                     <tr>
@@ -115,11 +96,7 @@ export class Crawler extends Component {
                     <input type="text" name="url" />
                     </label>
                     <input type="submit" value="Submit" />
-                </form>
-
-                <h1>Crawl results</h1>
-                <p>This component demonstrates fetching data from the server.</p>
-                
+                </form>         
                 {wordCount}
                 {images}
                 {contents}
