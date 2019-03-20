@@ -1,0 +1,46 @@
+﻿a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+html {
+  font-size: 14px;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+html, body, #container, .carousel {
+    height: 100%;
+    margin: 0;
+    width: 100%;
+}
+
+.image-slide {
+    height: 100%;
+    width: 100%;
+    transition: background-image .5s cubic-bezier();
+    height: 600px;
+}
+
+.slide-arrow {
+    cursor: pointer;
+    font-size: 2rem;
+    position:absolute;
+    top: 50%;
+}
+
+.slide-arrow.right {
+    right: 1rem;
+}
+
+.slide-arrow.left {
+    left: 1rem;
+}
